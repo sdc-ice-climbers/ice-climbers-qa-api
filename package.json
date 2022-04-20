@@ -1,0 +1,29 @@
+{
+  "name": "ice-climbers-qa-api",
+  "version": "1.0.0",
+  "description": "questions and answers server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdc-ice-climbers/ice-climbers-qa-api.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "owen yoshishige",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/sdc-ice-climbers/ice-climbers-qa-api/issues"
+  },
+  "homepage": "https://github.com/sdc-ice-climbers/ice-climbers-qa-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "mongoose": "^6.3.0"
+  }
+}
