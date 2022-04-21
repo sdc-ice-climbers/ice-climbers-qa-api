@@ -27,7 +27,6 @@
 --   photo_URL varchar
 -- );
 
-
 -- Copy the csv contents to those tables
 -- COPY questionscsv(
 --   question_id,
@@ -67,10 +66,12 @@
 -- CSV HEADER;
 
 
--- Last step is to insert all of the csv table data into our real tables
-INSERT INTO products (
-  product_id
-)
+-- Insert all of the csv table data into our real tables
+INSERT INTO products (product_id)
+SELECT
+  i.product_id as product_id
+FROM (SELECT DISTINCT product_id FROM questionscsv) i
+ON CONFLICT DO NOTHING;
 
 INSERT INTO questions (
   question_id,
@@ -82,6 +83,27 @@ INSERT INTO questions (
   question_helpfulness,
   email
 )
+SELECT
+  i.question_id as question_id,
+  i.product_id as product_id,
+  i.question_body as question_body,
+  TO_TIMESTAMP(i.question_date / 1000) as question_date,
+  i.asker_name as asker_name,
+  i.reported as reported,
+  i.question_helpfulness as question_helpfulness,
+  i.email as email
+FROM (SELECT
+  question_id,
+  product_id,
+  question_body,
+  question_date,
+  asker_name,
+  reported,
+  question_helpfulness,
+  email
+  FROM questionscsv
+) i
+ON CONFLICT DO NOTHING;
 
 INSERT INTO answers (
   question_id,
@@ -93,9 +115,37 @@ INSERT INTO answers (
   helpfulness,
   email
 )
+SELECT
+  i.question_id as question_id,
+  i.id as id,
+  i.body as body,
+  TO_TIMESTAMP(i.date / 1000) as date,
+  i.answerer_name as answerer_name,
+  i.reported as reported,
+  i.helpfulness as helpfulness,
+  i.email as email
+FROM (SELECT
+  question_id,
+  id,
+  body,
+  date,
+  answerer_name,
+  reported,
+  helpfulness,
+  email
+  FROM answerscsv
+) i
+ON CONFLICT DO NOTHING;
 
 INSERT INTO photos (
   photo_id,
   answer_id,
   photo_url
-);
+)
+SELECT
+  i.photo_id as photo_id,
+  i.answer_id as answer_id,
+  i.photo_url as photo_url
+FROM (SELECT * from photoscsv) i
+ON CONFLICT DO NOTHING;
+
