@@ -1,12 +1,11 @@
 
 CREATE TABLE products (
-  id int,
-  product_id varchar(5) primary key
+  product_id varchar primary key
 );
 
 CREATE TABLE questions (
-  question_id varchar(6) primary key,
-  product_id varchar(5) references products(product_id),
+  question_id varchar primary key,
+  product_id varchar references products(product_id),
   question_body varchar(1000),
   question_date timestamp,
   asker_name varchar(60),
@@ -17,9 +16,9 @@ CREATE TABLE questions (
 
 CREATE TABLE answers (
   id int primary key,
-  question_id varchar(6) references questions(question_id),
+  question_id varchar references questions(question_id),
   body varchar(1000),
-  date timestamp,
+  date bigINT,
   answerer_name varchar(60),
   reported boolean,
   helpfulness int,
@@ -33,6 +32,3 @@ CREATE TABLE photos (
 );
 
 
-/*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
- *  to create the database and the tables.*/
