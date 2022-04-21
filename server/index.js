@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const router = require('./routes')
 const port = 1128;
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+//JSON middleware();
+app.use(express.json());
+
+//route requests to routes.js file
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
