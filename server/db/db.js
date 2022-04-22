@@ -1,14 +1,16 @@
-const { Pool, Client } = require('pg');
+require('dotenv').config();
+const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'root',
-  password: 'password',
-  host: 'localhost',
-  database: 'qna',
-  port: 1128
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB,
+  port: process.env.PORT
 });
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
 })
+
+module.exports = pool;

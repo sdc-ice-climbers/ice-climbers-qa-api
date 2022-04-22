@@ -1,22 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const model = require('./model');
 
-router.get('/qa/questions/', (req, res) => {
-  let count = req.query['count'] === undefined ? 5 : req.query['count'];
-  let page = req.query['page'] === undefined ? 1 : req.query['page'];
-  let product_id = req.query['product_id'] === undefined ? null : req.query['product_id'];
+router.get('/qa/questions/', model.getQuestions);
 
-  let results = {
-    count: count,
-    page: page,
-    product_id: product_id
-  };
+router.get('/qa/answers/', model.getAnswers);
 
-  if (!product_id) {
-    res.sendStatus(422);
-  } else {
-    res.send(results);
-  }
-});
+router.post('/qa/questions/', model.postQuestion);
+
+router.post('/qa/answers/', model.postAnswer);
+
+router.put('/qa/questions/:question_id/helpful', model.putHelpfulQ);
+
+router.put('/qa/questions/:question_id/report', model.reportQuestion);
+
+router.put('/qa/answers/:answer_id/helpful', model.putHelpfulA);
+
+router.put('/qa/answers/:answer_id/report', model.putHelpfulQ);
 
 module.exports = router;
