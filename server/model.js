@@ -7,16 +7,34 @@ const getQuestions = (req, res) => {
   let product_id = req.query['product_id'] === undefined ? null : req.query['product_id'].toString();
   let QOffset = page === 1 ? 0 : count * page;
 
-  pool.query(query.getQuestionsQuery, [product_id, count, QOffset])
-  .then((results) => res.send(results.rows[0]))
-  .catch((err) => {
-    console.error(err);
-    res.send(err)
-  });
+  if (!product_id) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.getQuestionsQuery, [product_id, count, QOffset])
+    .then((results) => res.send(results.rows[0]))
+    .catch((err) => {
+      console.error(err);
+      res.send(500)
+    });
+  }
 };
 
 const getAnswers = (req, res) => {
-  //
+  let count = req.query['count'] === undefined ? 5 : Number(req.query['count']);
+  let page = req.query['page'] === undefined ? 1 : Number(req.query['page']);
+  let question_id = req.params['question_id'] === undefined ? null : req.params['question_id'];
+  let AOffset = page === 1 ? 0 : count * page;
+
+  if (!question_id) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.getAnswersQuery, [question_id, page, count])
+    .then((results) => res.send(results.rows[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  }
 };
 
 const postQuestion = (req, res) => {

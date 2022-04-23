@@ -4,7 +4,7 @@ const model = require('./model');
 
 router.get('/qa/questions/', model.getQuestions);
 
-router.get('/qa/answers/', model.getAnswers);
+router.get('/qa/questions/:question_id/answers', model.getAnswers);
 
 router.post('/qa/questions/', model.postQuestion);
 
