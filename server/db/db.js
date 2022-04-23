@@ -5,7 +5,7 @@ const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB,
-  port: process.env.PORT
+  port: process.env.DB_PORT
 });
 
 pool.on('error', (err, client) => {
