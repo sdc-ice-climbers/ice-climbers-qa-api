@@ -149,3 +149,7 @@ SELECT
 FROM (SELECT * from photoscsv) i
 ON CONFLICT DO NOTHING;
 
+CREATE SEQUENCE photo_id_sq;
+ALTER TABLE photos
+ALTER COLUMN photo_id SET DEFAULT nextval('photo_id_sq');
+SELECT setval('photo_id_sq', (SELECT MAX(photo_id) FROM photos) + 1);

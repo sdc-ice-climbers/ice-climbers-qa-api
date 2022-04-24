@@ -26,9 +26,9 @@ CREATE TABLE answers (
 );
 
 CREATE TABLE photos (
-  photo_id int,
+  photo_id int NOT NULL,
   answer_id int references answers(id),
-  photo_URL varchar
+  photo_URL varchar NOT NULL
 );
 
 
