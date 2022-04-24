@@ -15,7 +15,7 @@ const getQuestions = (req, res) => {
     .then((results) => res.send(results.rows[0]))
     .catch((err) => {
       console.error(err);
-      res.send(500)
+      res.sendStatus(500)
     });
   }
 };
@@ -124,7 +124,7 @@ const reportQuestion = (req, res) => {
 
 const reportAnswer = (req, res) => {
   pool.query(query.reportAnswerQuery, [req.params.answer_id])
-  .then((results) => res.sendStatus(204))
+  .then((results) => res.send(results.rows))
   .catch((err) => {
     console.error(err);
     res.sendStatus(500);
