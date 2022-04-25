@@ -4,7 +4,8 @@
   "description": "questions and answers server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
   },
   "devDependencies": {
     "eslint": "^8.13.0",
-    "mongoose": "^6.3.0"
+    "jest": "^27.5.1",
+    "mongoose": "^6.3.0",
+    "pactum": "^3.1.6"
   }
 }
