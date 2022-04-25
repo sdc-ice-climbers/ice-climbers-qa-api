@@ -1,11 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 1128;
+const router = require('./routes')
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+//JSON middleware();
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+//route requests to routes.js file
+app.use(router);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port ${process.env.PORT}`);
 });
