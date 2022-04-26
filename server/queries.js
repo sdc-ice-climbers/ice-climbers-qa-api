@@ -58,7 +58,6 @@ FROM (
 ) as x
 `;
 
-
 const getAnswersQuery = `
 SELECT
   $1 as question,
