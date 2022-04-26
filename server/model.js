@@ -8,7 +8,7 @@ const getQuestions = (req, res) => {
   : req.query['product_id'].toString();
   let QOffset = page === 1 ? 0 : count * (page - 1);
 
-  if (!product_id) {
+  if (!product_id || Number.isNaN(Number(req.query['product_id']))) {
     res.sendStatus(422);
   } else {
     pool.query(query.getQuestionsQuery, [product_id, count, QOffset])
@@ -26,7 +26,7 @@ const getAnswers = (req, res) => {
   let question_id = req.params['question_id'] === undefined ? null : req.params['question_id'];
   let AOffset = page === 1 ? 0 : count * (page - 1);
 
-  if (!question_id) {
+  if (!question_id || Number.isNaN(Number(req.query['question_id']))) {
     res.sendStatus(422);
   } else {
     pool.query(query.getAnswersQuery, [question_id, page, count, AOffset])
@@ -78,7 +78,7 @@ const postAnswer = (req, res) => {
   let isOutOfRange = req.body.length > 5 ? true : false;
   let isValidFormat = validateObject(body);
 
-  if (isOutOfRange || !isValidFormat) {
+  if (isOutOfRange || !isValidFormat ||  Number.isNaN(Number(question_id))) {
     res.send(422);
   } else {
     pool.query(query.postAnswerQuery, [body.name, body.email, body.body, question_id])
@@ -114,39 +114,55 @@ const postAnswer = (req, res) => {
 };
 
 const reportQuestion = (req, res) => {
-  pool.query(query.reportQuestionQuery, [req.params.question_id])
-  .then((results) => res.sendStatus(204))
-  .catch((err) => {
-    console.error(err);
-    res.sendStatus(500);
-  })
+  if (Number.isNaN(Number(req.params.question_id))) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.reportQuestionQuery, [req.params.question_id])
+    .then((results) => res.sendStatus(204))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  }
 };
 
 const reportAnswer = (req, res) => {
-  pool.query(query.reportAnswerQuery, [req.params.answer_id])
-  .then((results) => res.send(results.rows))
-  .catch((err) => {
-    console.error(err);
-    res.sendStatus(500);
-  })
-}
+  if (Number.isNaN(Number(req.params.answer_id))) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.reportAnswerQuery, [req.params.answer_id])
+    .then((results) => res.send(results.rows))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  }
+};
 
 const putHelpfulQ = (req, res) => {
-  pool.query(query.questionHelpfulnessQuery, [req.params.question_id])
-  .then((results) => res.sendStatus(204))
-  .catch((err) => {
-    console.error(err);
-    res.sendStatus(500);
-  })
+  if (Number.isNaN(Number(req.params.question_id))) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.questionHelpfulnessQuery, [req.params.question_id])
+    .then((results) => res.sendStatus(204))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  }
 };
 
 const putHelpfulA = (req, res) => {
-  pool.query(query.answerHelpfulnessQuery, [req.params.answer_id])
-  .then((results) => res.sendStatus(204))
-  .catch((err) => {
-    console.error(err);
-    res.sendStatus(500);
-  })
+  if (Number.isNaN(Number(req.params.answer_id))) {
+    res.sendStatus(422);
+  } else {
+    pool.query(query.answerHelpfulnessQuery, [req.params.answer_id])
+    .then((results) => res.sendStatus(204))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  }
 };
 
 module.exports = {
