@@ -1,6 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const model = require('./model');
+
+router.get(`/${process.env.LOADERIO_KEY}/`, model.getLoaderIOKey);
 
 router.get('/qa/questions/', model.getQuestions);
 
