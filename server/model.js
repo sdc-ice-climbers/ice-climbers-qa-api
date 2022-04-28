@@ -1,5 +1,10 @@
+require('dotenv').config();
 const pool = require('./db/db.js');
 const query = require('./queries.js');
+
+const getLoaderIOKey = (req, res) => {
+  res.send(process.env.LOADERIO_KEY);
+}
 
 const getQuestions = (req, res) => {
   let count = req.query['count'] === undefined ? 5 : Number(req.query['count']);
@@ -180,6 +185,7 @@ const putHelpfulA = (req, res) => {
 };
 
 module.exports = {
+  getLoaderIOKey,
   getQuestions,
   getAnswers,
   postQuestion,
