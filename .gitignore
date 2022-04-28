@@ -4,3 +4,5 @@ csvfiles
 edit.sql
 .env
 script.js
+notes.js
+k6StressTest.js
