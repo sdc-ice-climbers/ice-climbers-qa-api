@@ -6,3 +6,4 @@ edit.sql
 script.js
 notes.js
 k6StressTest.js
+newrelic_agent.log
