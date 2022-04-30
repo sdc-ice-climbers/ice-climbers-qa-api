@@ -31,6 +31,8 @@ CREATE TABLE photoscsv (
   photo_URL varchar
 );
 
+--End of csv tables. Once you have copied the above table names to the CSV
+--files, you are ready to do the ETL transfer.
 
 -- Copy all CSV Data into the temp tables
 Copy the csv contents to those tables
