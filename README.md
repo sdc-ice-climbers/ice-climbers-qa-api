@@ -20,6 +20,7 @@ The Atelier Questions and Answers API has been refractored as a microservice fro
 | (2) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |       889 ms       | 2.5%    |
 | (3) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |        73ms        | 0.0%    |
 
+<br>
 
 ### Getting Started
 1. From a terminal, clone from [this](https://github.com/sdc-ice-climbers/ice-climbers-qa-api.git) repo.
