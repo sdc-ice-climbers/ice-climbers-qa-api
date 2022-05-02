@@ -15,10 +15,10 @@ The Atelier Questions and Answers API has been refractored as a microservice fro
 
 | Optimizatiom                                   | Clients Per Sec | Avg. Response Time | Error % |
 |------------------------------------------------|-----------------|--------------------|---------|
-| Single server w/ PostgreSQL on AWS             |       1000      |       2763ms       | 0.1%    |
-| (1) EC2 W/ NGINX Load Ballancer                |       1000      |       1496 ms      | 1.7%    |
-| (2) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |       889 ms       | 2.5%    |
-| (3) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |        73ms        | 0.0%    |
+| (1) EC2 W/ PostgreSQL on AWS                   |       1000      |       2763ms       | 0.1%    |
+| (2) EC2 W/ NGINX Load Ballancer                |       1000      |       1496 ms      | 1.7%    |
+| (3) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |       889 ms       | 2.5%    |
+| (4) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |        73ms        | 0.0%    |
 
 <br>
 
