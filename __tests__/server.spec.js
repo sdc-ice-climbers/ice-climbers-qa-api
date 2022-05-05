@@ -59,14 +59,14 @@ describe('GET all answers',() => {
 
 describe('POST questions',() => {
 
-  test('Should return status 204 when sending in a body', async function () {
+  test('Should return status 201 when sending in a body', async function () {
     await pactum.spec()
       .post('qa/questions/')
       .withBody(stub.goodQuestion)
-      .expectStatus(204)
+      .expectStatus(201)
   })
 
-  test('Should return status 204 when sending in no body', async function () {
+  test('Should return status 422 when sending in no body', async function () {
     await pactum.spec()
       .post('qa/questions/')
       .expectStatus(422)
@@ -75,11 +75,11 @@ describe('POST questions',() => {
 
 describe('POST answers',() => {
 
-  test('Should return status 204 when sending in a body', async function () {
+  test('Should return status 201 when sending in a body', async function () {
     await pactum.spec()
       .post('qa/questions/1000/answers')
       .withBody(stub.goodAnswer)
-      .expectStatus(204)
+      .expectStatus(201)
   })
 
   test('Should return status 422 when sending no body', async function () {
