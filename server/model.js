@@ -63,11 +63,11 @@ const postQuestion = (req, res) => {
     res.sendStatus(422)
   } else {
     pool.query(query.postQuestionQuery, [body.name, body.body, body.email, body.product_id])
-    .then((results) => res.status(204).send(results.rows[0]))
+    .then((results) => res.status(201).send(results.rows[0]))
     .catch((err) => {
-      console.error(err)
+      console.error(err);
       res.sendStatus(500);
-      return
+      return;
     })
   }
 };
@@ -95,7 +95,7 @@ const postAnswer = (req, res) => {
     pool.query(query.postAnswerQuery, [body.name, body.email, body.body, question_id])
     .then((results) => {
       if (!photos) {
-        res.sendStatus(204);
+        res.sendStatus(201);
       } else {
         const unnestElements = body.photos.map((element, index) => `$${index + 2}, `).join('');
         const dollarSigns = unnestElements.slice(0, unnestElements.length - 2);
@@ -109,7 +109,7 @@ const postAnswer = (req, res) => {
         `;
 
         pool.query(postPhotoQuery, [results.rows[0].id, ...body.photos])
-        .then((result) => res.sendStatus(204))
+        .then((result) => res.sendStatus(201))
         .catch((err) => {
           console.error(err);
           res.sendStatus(500);
