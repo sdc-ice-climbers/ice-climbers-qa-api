@@ -4,7 +4,7 @@
 The Atelier Questions and Answers API has been refractored as a microservice from the existing monolithic API of an e-commerce website, Atelier. It responds to serveral RESTful endpoints and has been optimized to handle web-scale traffic.
 
 ### *Optimizations:*
-- Implemented an ETL process to migrate over 5GB/13M+ entries into a redesigned postreSQL database.
+- Implemented an ETL process to migrate over 5GB/13M+ entries into a redesigned postgreSQL database.
 - Scaled horizontally to a micro-service architecture with 4 AWS EC2 instances.
 - Installed an NGINX load balancer to distribute traffic across servers and utilize proxy_caching.
 
@@ -15,11 +15,12 @@ The Atelier Questions and Answers API has been refractored as a microservice fro
 
 | Optimizatiom                                   | Clients Per Sec | Avg. Response Time | Error % |
 |------------------------------------------------|-----------------|--------------------|---------|
-| Single server w/ PostgreSQL on AWS             |       1000      |       2763ms       | 0.1%    |
-| (1) EC2 W/ NGINX Load Ballancer                |       1000      |       1496 ms      | 1.7%    |
-| (2) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |       889 ms       | 2.5%    |
-| (3) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |        73ms        | 0.0%    |
+| (1) EC2 W/ PostgreSQL on AWS                   |       1000      |       2763ms       | 0.1%    |
+| (2) EC2 W/ NGINX Load Ballancer                |       1000      |       1496 ms      | 1.7%    |
+| (3) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |       889 ms       | 2.5%    |
+| (4) EC2 W/ NGINX Load Ballancer & Proxy Cache  |       1000      |        73ms        | 0.0%    |
 
+<br>
 
 ### Getting Started
 1. From a terminal, clone from [this](https://github.com/sdc-ice-climbers/ice-climbers-qa-api.git) repo.
