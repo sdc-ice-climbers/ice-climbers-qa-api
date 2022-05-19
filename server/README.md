@@ -18,5 +18,4 @@
 
 7. In the psql shell, run: `\i ETL.sql;`. (This may take several minutes depending on the csv file size.)
 
-
 The database and data is now ready for use!

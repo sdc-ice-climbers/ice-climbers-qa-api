@@ -34,3 +34,5 @@ const products = mongoose.schema({
 });
 
 const QnA = mongoose.model('QnA', products);
+
+module.exports = QnA;
