@@ -121,9 +121,11 @@ Retrieves a list of answers for a question.
 #### Parameters
 Endpoint should contain question_id parameter. Page and count should be query strings.
 
-| **Parameter** | **Type** | **Description**                         |
-|---------------|----------|-----------------------------------------|
-| question_id   | integer  | Question for which to retrieve answers. |
+| **Parameter** | **Type** | **Description**                                 |
+|---------------|----------|-------------------------------------------------|
+| question_id   | integer  | Question for which to retrieve answers.         |
+| page          | integer  | Selects the page of results. Default 1.         |
+| count         | integer  | Specifies how many results per page. Default 5. |
 
 #### Response status: 200 OK
 ```json
